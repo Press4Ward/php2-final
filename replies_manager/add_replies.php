@@ -12,15 +12,15 @@
 <!-- start of add reply form -->
 <main>
     <h3>Add Reply</h3>
-    <form action="index.php" method="post">
+    <form action="index2.php" method="post">
         <input type="hidden" name="action" value="add_replies" />
 
         <!--submit button for reply-->
         <input type="text" name="reply"> 
-        <input type="submit"  formaction="../comments/list_comments.php" value="Add Reply" />
+        <input type="submit"  formaction="../comments/list_comments2.php" value="Add Reply" />
 
         <!-- hidden reply_id -->
-        <input type="hidden" name="reply_id" value='<?php echo $reply_id ?>'/>
+        <!--input type="hidden" name="reply_id" value='<?php echo $reply_id ?>'/-->
 
         <!-- hidden userid -->
         <input type="hidden" name="userid" value='<?php echo $userid ?>'/>

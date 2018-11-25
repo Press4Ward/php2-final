@@ -1,8 +1,8 @@
 <?php 
 // required files and databases
 require('../model/database.php');
-//require('../model/comments_db.php');
-require('../model/replies_db.php');
+require('../model/comments.php');
+require('../model/replies.php');
 //require('../util/main.php');
 //require('../util.tags.php');
 

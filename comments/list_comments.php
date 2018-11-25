@@ -1,15 +1,15 @@
 <?php 
-    include('../view/header.php'); ?>
+    include('../view/header.php');
 
-<!--require('../model/database.php'); 
-    require('./model/comments_db.php');
-    require('./model/users_db.php');
-    require('./util/tags.php');
-    require('./util/main.php');
+    require('../model/database.php'); 
+    //require('./model/comments_db.php');
+    //require('./model/users_db.php');
+    //require('./util/tags.php');
+    //require('./util/main.php');
 
 //required databases and files
 
-?-->
+?>
 
 <section>
 <!--left side of list_comments.php page -->
@@ -48,20 +48,34 @@
       <hr>
 
 <!--Echo User name after successfully logging in-->
+<?php 
+    include('session.php');
+?>
+
    <div>
-      <?php echo "Hi . $session", isset($session); ?><br>
-
-      <div class="imgcontainer">
+        <div class="imgcontainer">
         <img src="../images/terry_avatar.png" alt="Avatar" class="avatar" width="50" height="50">
-      </div>
+        </div>
 
-      <?php echo "Hello ", isset($userid) ? $userid : "$userid" ?><br>
+        <h4>Hi <?php echo $login_session; ?></h4> <!-- calls the login session from login.php-->
+       
+        <!--logout button-->
+        <a href="logout.php" class="w3-btn w3-round-xxlarge w3-teal w3-right">Logout</a><br><br>
+  </div>
+
+      <!--?php echo "Hi . $session", isset($session); ?><br-->
+
+      <!-- <div class="imgcontainer">
+        <img src="../images/terry_avatar.png" alt="Avatar" class="avatar" width="50" height="50">
+      </div> -->
+
+      <!--?php echo "Hello ", isset($userid) ? $userid : "$userid" ?><br-->
     
     <!--logout button-->
 
-      <a href="/user_manager/logout.php" class="w3-btn w3-round-xxlarge w3-teal w3-right">Logout</a><br><br>
+      <!-- <a href="/user_manager/logout.php" class="w3-btn w3-round-xxlarge w3-teal w3-right">Logout</a><br><br> -->
   
-      </div>
+      <!-- </div> -->
 
 <!--end of user login and password section-->
 </section>
@@ -74,6 +88,18 @@
       <h2>Comments and Replies Bottom</h2>
         
 <!--main-->
+
+
+<!--ALTERNATE comments foreach loop-->
+<?php
+    function get_comments($comment_id) {
+        echo "Current Comments " . $_REQUEST['comment_id'];
+    }
+    get_comments();
+    echo $comment['dateTime'] ; ?><br>
+    echo $comment['comment']; ?>
+    ?>
+
 
 <!--comments foreach loop-->
     <?php foreach ($comments as $comment) : ?>
@@ -104,9 +130,9 @@
             <hr> <!-- line between replies --> 
         <?php endforeach; ?>
     </div>
-    <?php endforeach; ?>      
+    <!--?php endforeach; ?-->      
 
 </section>
 </main>
-
+<?php endforeach; ?>
 <?php include 'view/footer.php'; ?>

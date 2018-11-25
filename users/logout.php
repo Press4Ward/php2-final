@@ -3,6 +3,6 @@
    session_start();
    
    if(session_destroy()) {
-      header('location:list_comments.php');
+      header("Location:logout.php");
    }
 ?>

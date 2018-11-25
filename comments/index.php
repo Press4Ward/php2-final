@@ -2,9 +2,7 @@
 // required files and databases
 require('../model/database.php');
 require('../model/comments_db.php');
-//require('../model/replies_db.php');
-//require('../util/main.php');
-//require('../util.tags.php');
+
 
 
 //action to list comments
@@ -12,20 +10,22 @@ $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {
-        $action = 'list_comments';
+        $action = 'get_comments';
     }
 }
 // ADD SWITCH STATEMENTS FOR EACH OF THE ABOVE functions which will link back to functions on the model pages
 
+
 switch ($action) {
-    case 'list_comments' : // get all comments function
+    case 'get_comments' : // get comments function
         $comment_id = filter_input(INPUT_GET, 'comment_id', FILTER_VALIDATE_INT);
         if ($comment_id == NULL || $comment_id == FALSE) {
         $comment_id = 1;
         }
-        $comment = get_all_comments();
-        include('../list_comments.php');
+        $comment = get_comments();
+        include('list_comments.php');
         break;
+
     case 'add_comment' : // add comments function
         $userid = filter_input(INPUT_POST, 'userid', FILTER_VALIDATE_INT);
         $dateTime = filter_intput(INPUT_POST, 'dateTime');
@@ -48,16 +48,16 @@ switch ($action) {
             header("Location: .?comment_id=$comment_id");
         }
         break;
-    case 'retrieve_comment' : // retrieve comments function
-        $comment_id = filter_input(INPUT_POST, 'comment_id', FILTER_VALIDATE_INT);
-        if ($comment_id == NULL || $comment_id == FALSE) {
-            $error = "oops...what happened?";
-            include('../list_comments.php');
-        } else {
-            retrieve_comment($comment_id);
-            header("Location: .?comment_id=$comment_id");
-        }
-        break;
+    //case 'retrieve_comment' : // retrieve comments function
+       // $comment_id = filter_input(INPUT_POST, 'comment_id', FILTER_VALIDATE_INT);
+       // if ($comment_id == NULL || $comment_id == FALSE) {
+          //  $error = "oops...what happened?";
+           // include('../list_comments.php');
+       // } else {
+          //  retrieve_comment($comment_id);
+          //  header("Location: .?//comment_id=$comment_id");
+       // }
+        //break;
     case 'edit_comment' : // edit comments function
         $comment_id = filter_input(INPUT_POST, 'comment_id', FILTER_VALIDATE_INT);
         if ($comment_id == NULL || $comment_id == FALSE || $dateTime == NULL || $dateTime == FALSE || $comment == NULL || $comment == $FALSE) {

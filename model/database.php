@@ -1,7 +1,7 @@
 <?php
     //$dsn = 'mysql:host=press4wardgroupcom.ipagemysql.com;dbname=php2final';//
     $dsn = 'mysql:host=localhost;dbname=php2final';
-    $username = 'mgs_admin';
+    $username = 'mgs_user';
     $password = 'Exuma2018';
 
     //$username = 'root';

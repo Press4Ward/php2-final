@@ -1,9 +1,12 @@
 <?php
+// function to get replies by user
+// reply_id is auto incremented and should return in ascending order
 
-// function to get comments to comments_db
-function get_all_comments() {
+
+// function to get replies to replies_db
+function get_all_replies() {
     global $db;
-    $query = 'SELECT * FROM comments ORDER BY dateTime desc';
+    $query = 'SELECT * FROM replies ORDER BY dateTime ASC';
     try {
         $statement = $db->prepare($query);
         $statement->execute();
@@ -16,35 +19,35 @@ function get_all_comments() {
     }
 }
 
-// function to add comments to comments_db database
-function add_comment($userid, $dateTime, $comment) {
+// function to add replies to replies_db database
+function add_reply($userid, $dateTime, $comment, $comment_id) {
     global $db;
-    $query ='INSERT INTO comments 
-                (userid, dateTime, comment)
+    $query ='INSERT INTO replies 
+                (userid, dateTime, reply)
             VALUES
-                (:userid, :dateTime, :comment,';
+                (:userid, :dateTime, :reply,';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':userid', $userid);
         $statement->bindValue(':dateTime', $dateTime);
-        $statement->bindValue(':comment', $comment);
+        $statement->bindValue(':comment', $comment_id);
+        $statement->bindValue(':comment', $comment_id);
         $statement->execute();
         $statement->closeCursor();
-
         } catch (PDOException $e) {
            $error_message = $e->getMessage();
            display_db_error($error_message);
      }
 }
 
-// function to delete comments
-function delete_comment($comment_id) {
+// function to delete replies
+function delete_reply($reply_id) {
     global $db;
-    $query = 'DELETE FROM comments 
-                WHERE comment_id = :comment_id';
+    $query = 'DELETE FROM replies 
+                WHERE reply_id = :reply_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':comment_id', $comment_id);
+        $statement->bindValue(':reply_id', $reply_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
         return $row_count;
@@ -55,13 +58,13 @@ function delete_comment($comment_id) {
 }
 
 // function to retrive comments
-function retrieve_comment($comment_id) {
+function retrieve_reply($reply_id) {
     global $db;
-    $query = 'SELECT FROM comments 
-                WHERE comment_id = :comment_id';
+    $query = 'SELECT FROM replies
+                WHERE reply_id = :replies_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':comment_id', $comment_id);
+        $statement->bindValue(':replies_id', $replies_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
     } catch (PDOExeception $e) {
@@ -70,17 +73,17 @@ function retrieve_comment($comment_id) {
     }
 }
 
-// function to edit comments
-function edit_comment($comment_id, $dateTime, $comment) {
+// function to edit replies
+function edit_reply($reply_id, $dateTime, $reply) {
     global $db;
-    $query = 'UPDATE comments 
-                SET comment = $comment
-                WHERE comment_id = :comment_id';
+    $query = 'UPDATE replies 
+                SET replies = $reply
+                WHERE reply_id = :reply_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':comment_id', $comment_id);
+        $statement->bindValue(':reply_id', $reply_id);
         $statement->bindValue(':dateTime', $dateTime);
-        $statement->bindValue(':comment', $comment);
+        $statement->bindValue(':reply', $reply);
         $statement->closeCursor();
     } catch (PDOExeception $e) {
         $error_message = $e->getMessage();

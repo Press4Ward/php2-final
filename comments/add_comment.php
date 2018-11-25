@@ -2,8 +2,8 @@
     session_start();
 
     /* must make sure is logged in first in order to comment */
-    $user_check = $_SESSION["userid"]; 
-    $password = $_SESSION["password"];
+    //$user_check = $_SESSION["userid"]; 
+    //$password = $_SESSION["password"];
 
     /* must make sure is logged in first in order to comment */
 
@@ -30,26 +30,31 @@
 <!-- Start of Add Comment form -->
 
     <h2>Add Comment</h2>
-    <form action="list_comments.php" method="post">
-         <input placeholder='Comment' type='text' name='comment' required>&nbsp;
+    <form method="POST">
+    <!--form action="list_comments.php" method="post"-->
+         <input placeholder='Comment' for="comment" type="text" name='comment' required>&nbsp;
         <?php foreach ($comments as $comment): ?>
             <option value='<?php echo $comment['comment_id']; ?>'><?php echo $comment['user_id']; ?></option>
         <?php endforeach; ?>
         
     </select>
 
-    <!-- add comment submit button -->
-    <p class="last_paragraph">
-    <form action="list_comments.php" method="post">
-    <input type="submit" value="Add Comment & Return">
-    </form>
+        <!-- add comment submit button -->
+        <!--p class="last_paragraph">
+        <form action="list_comments.php" method="post">
+        <input type="submit" value="Add Comment & Return">
+        </form-->
 
     <p class="last_paragraph">
-        <a href="../comments/list_comments.php">Return</a>
-        </div>
+        <form action="list_comments.php" method="post">
+        <a href="../comments/list_comments.php">Add Comment & <br> Return</a>
+        </p>
+       
+       
     <br>
     <br>
-    
+    </div>
+    </form>
 
     </div>
     <br>

@@ -109,10 +109,15 @@ p {
 
 /* LOGIN PAGE CSS */
 
+  /* .loginform {
+
+
+  }*/
+
 /* add padding to container */
-.container {
-  padding: 16px;
-  padding-bottom: 10px;
+  .container {
+   padding: 16px;
+   padding-bottom: 10px;
   }
   
   /* border around login form */
@@ -123,7 +128,7 @@ p {
   }
   
   /* full-width inputs for username and password */
-  input[type=text], input[type=password] {
+ input[type=text], input[type=password] {
     width: 75%;
     padding: 12px 20px;
     margin: 8px 0;

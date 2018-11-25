@@ -1,10 +1,14 @@
 <?php
 //required databases and files
 require('model/database.php');
-require('model/comments_db.php');
+require('model/comments.php');
 require('util/tags.php');
 //require('util/main.php');
 include('view/header.php');
+
+// get function arrays to show comments and replies
+$comment = get_comments();
+$reply = get_replies();
 
 ?>
 
@@ -34,13 +38,13 @@ include('view/header.php');
              <p>Here's the latest on why you should not wait to the last minute to book last minute airline tickets.</p>
 
             <!-- comments button -->
-            <a href="comments/list_comments.php" class="w3-button w3-round-xxlarge w3-teal">Comments</a>
+            <a href="list_comments.php" class="w3-button w3-round-xxlarge w3-teal">Comments</a>
             
             <!-- login button -->
-            <a href="user_manager/login_form.php" class="w3-button w3-round-xxlarge w3-medium w3-teal" w3-round-xlarge>Login</a>
+            <a href="users/login.php" class="w3-button w3-round-xxlarge w3-medium w3-teal" w3-round-xlarge>Login</a>
 
             <!-- ADD SUCCESSFUL LOGIN IN MESSAGE HERE ???-->
-            <br><br>
+           
 
         </div>
     </div>
@@ -50,5 +54,5 @@ include('view/header.php');
 </html>
 </main>
 <br>
-<script type="text/php" src="comments/list_comments.php"></script>
+<script type="text/php" src="comments/list_comments2.php"></script>
 <?php include 'view/footer.php'; ?>
